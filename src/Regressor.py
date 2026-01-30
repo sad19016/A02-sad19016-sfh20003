@@ -52,3 +52,47 @@ mlp = MLPRegressor(
 )
 
 mlp.fit(X_train_scaled, y_train)
+
+#This is Faizan taking over for the plots!
+import os
+import matplotlib.pyplot as plt
+
+#Training Set plot code
+y_train_pred = mlp.predict(X_train_scaled)
+y_test_pred = mlp.predict(X_test_scaled)
+plt.figure(figsize=(6, 6))
+plt.scatter(y_train, y_train_pred, alpha=0.5)
+plt.plot(
+    [y_train.min(), y_train.max()],
+    [y_train.min(), y_train.max()],
+    linestyle="--"
+)
+
+plt.xlabel("Actual Values")
+plt.ylabel("Predicted Values")
+plt.title("Actual vs Predicted (Training Set)")
+
+plt.tight_layout()
+plt.savefig("../figures/mlp_actual_vs_predicted_train.png", dpi=300)
+plt.close()
+
+#Test plot 
+plt.figure(figsize=(6, 6))
+plt.scatter(y_test, y_test_pred, alpha=0.5)
+plt.plot(
+    [y_test.min(), y_test.max()],
+    [y_test.min(), y_test.max()],
+    linestyle="--"
+)
+
+plt.xlabel("Actual Values")
+plt.ylabel("Predicted Values")
+plt.title("Actual vs Predicted (Test Set)")
+
+plt.tight_layout()
+plt.savefig("../figures/mlp_actual_vs_predicted_test.png", dpi=300)
+plt.close()
+
+
+
+
